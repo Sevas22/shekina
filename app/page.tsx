@@ -6,6 +6,8 @@ import { WorkshopSection } from "@/components/workshop-section"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 
+export const dynamic = "force-dynamic"
+
 export default function HomePage() {
   return (
     <main className="min-h-screen">

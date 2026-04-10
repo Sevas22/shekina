@@ -1,5 +1,5 @@
 import { WHATSAPP_PHONE } from "@/lib/site-config"
-import type { Product } from "@/lib/products"
+import type { Product } from "@/lib/products-types"
 
 export function getWhatsAppUrl(message?: string) {
   const base = `https://wa.me/${WHATSAPP_PHONE}`

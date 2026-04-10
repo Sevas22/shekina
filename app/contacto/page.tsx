@@ -3,7 +3,15 @@ import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { MapPin, Phone, Clock, Mail, MessageCircle, Instagram, Facebook } from "lucide-react"
+import {
+  IconMapPin,
+  IconPhone,
+  IconClock,
+  IconMail,
+  IconMessage,
+  IconInstagram,
+  IconFacebook,
+} from "@/components/icons"
 
 export const metadata = {
   title: "Contacto | Shekiná - Reparación de Calzado",
@@ -12,7 +20,7 @@ export const metadata = {
 
 const contactInfo = [
   {
-    icon: MapPin,
+    icon: IconMapPin,
     title: "Dirección",
     details: ["Calle Principal #123", "Centro, Ciudad"],
     action: {
@@ -21,7 +29,7 @@ const contactInfo = [
     },
   },
   {
-    icon: Phone,
+    icon: IconPhone,
     title: "Teléfono",
     details: ["+57 300 123 4567", "+57 (1) 234 5678"],
     action: {
@@ -30,13 +38,13 @@ const contactInfo = [
     },
   },
   {
-    icon: Clock,
+    icon: IconClock,
     title: "Horario",
     details: ["Lunes a Viernes: 8:00 AM - 6:00 PM", "Sábado: 9:00 AM - 2:00 PM"],
     action: null,
   },
   {
-    icon: Mail,
+    icon: IconMail,
     title: "Email",
     details: ["info@shekina.com"],
     action: {
@@ -109,7 +117,7 @@ export default function ContactoPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-                <MessageCircle className="w-8 h-8" />
+                <IconMessage className="w-8 h-8" size={32} />
               </div>
               <div>
                 <h2 className="text-2xl font-bold">¿Prefieres WhatsApp?</h2>
@@ -120,7 +128,7 @@ export default function ContactoPage() {
             </div>
             <Button asChild size="lg" className="bg-white text-[#25D366] hover:bg-white/90">
               <Link href="https://wa.me/573001234567?text=Hola,%20me%20gustaría%20obtener%20información" target="_blank">
-                <MessageCircle className="w-5 h-5 mr-2" />
+                <IconMessage className="w-5 h-5 mr-2" size={20} />
                 Chatear ahora
               </Link>
             </Button>
@@ -189,14 +197,14 @@ export default function ContactoPage() {
               className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
               aria-label="Instagram"
             >
-              <Instagram className="w-6 h-6" />
+              <IconInstagram className="w-6 h-6" size={24} />
             </a>
             <a
               href="#"
               className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
               aria-label="Facebook"
             >
-              <Facebook className="w-6 h-6" />
+              <IconFacebook className="w-6 h-6" size={24} />
             </a>
             <a
               href="https://wa.me/573001234567"
@@ -205,7 +213,7 @@ export default function ContactoPage() {
               className="w-14 h-14 rounded-full bg-card border border-border flex items-center justify-center hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-colors"
               aria-label="WhatsApp"
             >
-              <MessageCircle className="w-6 h-6" />
+              <IconMessage className="w-6 h-6" size={24} />
             </a>
           </div>
         </div>

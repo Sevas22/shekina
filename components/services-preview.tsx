@@ -1,25 +1,31 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Scissors, Wrench, PaintBucket, Ruler } from "lucide-react"
+import {
+  IconArrowRight,
+  IconScissors,
+  IconWrench,
+  IconPaint,
+  IconRuler,
+} from "@/components/icons"
 
 const services = [
   {
-    icon: Wrench,
+    icon: IconWrench,
     title: "Reparación de Calzado",
     description: "Cambio de suelas, tacones, costuras y renovación completa de tu calzado favorito.",
   },
   {
-    icon: Scissors,
+    icon: IconScissors,
     title: "Confección en Cuero",
     description: "Elaboramos billeteras, cinturones, bolsos y accesorios a medida con cuero de primera calidad.",
   },
   {
-    icon: PaintBucket,
+    icon: IconPaint,
     title: "Restauración",
     description: "Devolvemos la vida a tus artículos de cuero con tintura, hidratación y acabados profesionales.",
   },
   {
-    icon: Ruler,
+    icon: IconRuler,
     title: "Trabajos a Medida",
     description: "Creamos piezas únicas según tus especificaciones, desde diseño hasta el producto final.",
   },
@@ -42,7 +48,7 @@ export function ServicesPreview() {
           <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary/10 w-fit group">
             <Link href="/servicios">
               Ver todos los servicios
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <IconArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" size={16} />
             </Link>
           </Button>
         </div>

@@ -1,8 +1,8 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { IconArrowRight } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import { ProductCard } from "@/components/product-card"
 import {
@@ -15,10 +15,25 @@ type ProductCatalogProps = {
   products: Product[]
   /** En inicio: enlace destacado a la tienda completa */
   showStoreLink?: boolean
+  /** Desde URL: ?categoria=billeteras */
+  initialCategory?: "all" | ProductCategoryId
+  /** Mostrar etiqueta Mujer / Hombre / Unisex en cada tarjeta */
+  showGenderOnCards?: boolean
 }
 
-export function ProductCatalog({ products, showStoreLink }: ProductCatalogProps) {
-  const [activeCategory, setActiveCategory] = useState<"all" | ProductCategoryId>("all")
+export function ProductCatalog({
+  products,
+  showStoreLink,
+  initialCategory = "all",
+  showGenderOnCards = false,
+}: ProductCatalogProps) {
+  const [activeCategory, setActiveCategory] = useState<"all" | ProductCategoryId>(
+    initialCategory
+  )
+
+  useEffect(() => {
+    setActiveCategory(initialCategory)
+  }, [initialCategory])
 
   const filtered = useMemo(() => {
     if (activeCategory === "all") return products
@@ -35,7 +50,7 @@ export function ProductCatalog({ products, showStoreLink }: ProductCatalogProps)
           <Button asChild variant="outline" className="border-primary text-primary shrink-0">
             <Link href="/tienda">
               Ver tienda completa
-              <ArrowRight className="ml-2 w-4 h-4" />
+              <IconArrowRight className="ml-2 w-4 h-4" size={16} />
             </Link>
           </Button>
         </div>
@@ -60,7 +75,11 @@ export function ProductCatalog({ products, showStoreLink }: ProductCatalogProps)
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filtered.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            showGenderBadge={showGenderOnCards}
+          />
         ))}
       </div>
 

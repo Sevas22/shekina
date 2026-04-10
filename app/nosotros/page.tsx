@@ -4,7 +4,7 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { Heart, Users, Award, Target } from "lucide-react"
+import { IconHeart, IconUsers, IconAward, IconTarget } from "@/components/icons"
 
 export const metadata = {
   title: "Nosotros | Shekiná - Reparación de Calzado",
@@ -13,22 +13,22 @@ export const metadata = {
 
 const values = [
   {
-    icon: Heart,
+    icon: IconHeart,
     title: "Pasión por el Oficio",
     description: "Cada pieza que elaboramos refleja nuestro amor por la artesanía y el trabajo bien hecho.",
   },
   {
-    icon: Users,
+    icon: IconUsers,
     title: "Servicio Personalizado",
     description: "Tratamos a cada cliente como único, escuchando sus necesidades y superando sus expectativas.",
   },
   {
-    icon: Award,
+    icon: IconAward,
     title: "Calidad Sin Compromiso",
     description: "Utilizamos solo los mejores materiales y técnicas para garantizar durabilidad y belleza.",
   },
   {
-    icon: Target,
+    icon: IconTarget,
     title: "Atención al Detalle",
     description: "Nos obsesionamos con cada puntada, cada acabado, cada mínimo detalle de nuestro trabajo.",
   },

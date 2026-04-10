@@ -4,7 +4,17 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import { Scissors, Wrench, PaintBucket, Ruler, Clock, Shield, Award, MessageCircle } from "lucide-react"
+import {
+  IconScissors,
+  IconWrench,
+  IconPaint,
+  IconRuler,
+  IconClock,
+  IconShield,
+  IconAward,
+  IconMessage,
+  IconCheck,
+} from "@/components/icons"
 
 export const metadata = {
   title: "Servicios | Shekiná - Reparación de Calzado",
@@ -13,7 +23,7 @@ export const metadata = {
 
 const mainServices = [
   {
-    icon: Wrench,
+    icon: IconWrench,
     title: "Reparación de Calzado",
     description: "Damos nueva vida a tu calzado favorito con reparaciones profesionales que prolongan su uso por muchos años más.",
     features: [
@@ -27,7 +37,7 @@ const mainServices = [
     image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&h=400&fit=crop",
   },
   {
-    icon: Scissors,
+    icon: IconScissors,
     title: "Confección en Cuero",
     description: "Elaboramos artículos de cuero con dedicación artesanal, utilizando materiales de primera calidad para productos únicos.",
     features: [
@@ -41,7 +51,7 @@ const mainServices = [
     image: "https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=600&h=400&fit=crop",
   },
   {
-    icon: PaintBucket,
+    icon: IconPaint,
     title: "Restauración de Cuero",
     description: "Recuperamos la belleza original de tus artículos de cuero con tratamientos profesionales de limpieza, tintura e hidratación.",
     features: [
@@ -55,7 +65,7 @@ const mainServices = [
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
   },
   {
-    icon: Ruler,
+    icon: IconRuler,
     title: "Trabajos a Medida",
     description: "Creamos piezas exclusivas según tus especificaciones exactas, desde el diseño inicial hasta el producto terminado.",
     features: [
@@ -72,17 +82,17 @@ const mainServices = [
 
 const features = [
   {
-    icon: Clock,
+    icon: IconClock,
     title: "Entrega Rápida",
     description: "Trabajos listos en el menor tiempo posible sin sacrificar calidad",
   },
   {
-    icon: Shield,
+    icon: IconShield,
     title: "Garantía de Calidad",
     description: "Respaldamos todos nuestros trabajos con garantía de satisfacción",
   },
   {
-    icon: Award,
+    icon: IconAward,
     title: "Experiencia Comprobada",
     description: "Más de 20 años perfeccionando el arte de la marroquinería",
   },
@@ -167,16 +177,14 @@ export default function ServiciosPage() {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {service.features.map((feature, fIndex) => (
                     <li key={fIndex} className="flex items-center gap-2 text-sm font-[var(--font-inter)]">
-                      <svg className="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
+                      <IconCheck className="w-5 h-5 text-primary shrink-0" size={20} />
                       {feature}
                     </li>
                   ))}
                 </ul>
                 <Button asChild className="bg-[#25D366] hover:bg-[#20BA5C] text-white">
                   <Link href={`https://wa.me/573001234567?text=${encodeURIComponent(`Hola, me gustaría información sobre: ${service.title}`)}`} target="_blank">
-                    <MessageCircle className="w-4 h-4 mr-2" />
+                    <IconMessage className="w-4 h-4 mr-2" size={16} />
                     Cotizar este servicio
                   </Link>
                 </Button>
@@ -199,7 +207,7 @@ export default function ServiciosPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-sidebar-primary hover:bg-sidebar-primary/90 text-sidebar-primary-foreground">
               <Link href="https://wa.me/573001234567" target="_blank">
-                <MessageCircle className="w-5 h-5 mr-2" />
+                <IconMessage className="w-5 h-5 mr-2" size={20} />
                 Hablar por WhatsApp
               </Link>
             </Button>

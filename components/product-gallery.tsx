@@ -1,7 +1,8 @@
 import { ProductCatalog } from "@/components/product-catalog"
-import { products } from "@/lib/products"
+import { getProducts } from "@/lib/products"
 
-export function ProductGallery() {
+export async function ProductGallery() {
+  const products = await getProducts()
   return (
     <section className="py-20 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -16,7 +17,7 @@ export function ProductGallery() {
           </p>
         </div>
 
-        <ProductCatalog products={products} showStoreLink />
+        <ProductCatalog products={products} showStoreLink showGenderOnCards />
       </div>
     </section>
   )

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter } from 'next/font/google'
+import { Playfair_Display, Inter, Dancing_Script } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const playfair = Playfair_Display({ 
@@ -12,6 +13,12 @@ const playfair = Playfair_Display({
 const inter = Inter({ 
   subsets: ["latin"],
   variable: '--font-inter',
+  display: 'swap',
+})
+
+const dancing = Dancing_Script({
+  subsets: ["latin"],
+  variable: '--font-dancing',
   display: 'swap',
 })
 
@@ -47,9 +54,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${playfair.variable} ${inter.variable} font-sans antialiased`}
+        className={`${playfair.variable} ${inter.variable} ${dancing.variable} font-sans antialiased`}
       >
         {children}
+        <Toaster richColors position="top-center" />
         <Analytics />
       </body>
     </html>

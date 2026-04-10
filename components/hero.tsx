@@ -1,102 +1,122 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { IconArrowRight, IconSparkle, IconShield, IconAward } from "@/components/icons"
+
+/** Fotos propias en /public/hero — reemplazá el archivo manteniendo el nombre para actualizar el banner */
+const HERO_IMAGE = "/hero/banner-artesano.png"
+
+const features = [
+  {
+    icon: IconSparkle,
+    title: "Artesanía real",
+    text: "Cada trabajo pasa por manos que conocen el oficio.",
+  },
+  {
+    icon: IconShield,
+    title: "Durabilidad",
+    text: "Reparaciones y piezas hechas para el uso diario.",
+  },
+  {
+    icon: IconAward,
+    title: "Tradición viva",
+    text: "Más de 20 años honrando el cuero y el calzado.",
+  },
+] as const
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,oklch(0.74_0.12_78/0.08),transparent_50%),radial-gradient(circle_at_80%_60%,oklch(0.44_0.095_52/0.06),transparent_45%)]" />
-      
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <span className="inline-block text-sm font-medium text-primary tracking-wider uppercase font-[var(--font-inter)]">
-                Artesanía en Cuero
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-                Tradición y calidad en cada{" "}
-                <span className="text-primary">puntada</span>
-              </h1>
-            </div>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg font-[var(--font-inter)]">
-              Expertos en reparación de calzado y confección de artículos de cuero. 
-              Billeteras, cinturones, bolsos y más, elaborados con la más alta calidad artesanal.
-            </p>
+    <section className="relative min-h-[100svh] min-h-[100dvh] flex flex-col overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src={HERO_IMAGE}
+          alt="Taller Shekiná: trabajo artesanal en máquina y cuero"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[72%_center] sm:object-[65%_center] md:object-center scale-[1.02]"
+        />
+        {/* Lectura editorial: más oscuro a la izquierda (texto) y abajo */}
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/50 to-transparent sm:from-black/85 sm:via-black/35 md:max-w-[78%] md:from-black/80"
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/50"
+          aria-hidden
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_70%_50%,transparent_0%,rgba(0,0,0,0.35)_100%)]"
+          aria-hidden
+        />
+      </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
-                <Link href="/servicios">
-                  Ver Servicios
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/10">
-                <Link href="/contacto">
-                  Contáctanos
-                </Link>
-              </Button>
-            </div>
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col justify-between px-6 pb-10 pt-28 sm:px-8 sm:pb-12 sm:pt-32 md:px-10 lg:px-12 lg:pb-14 lg:pt-36">
+        <div className="max-w-2xl space-y-6 md:space-y-8">
+          <p className="font-[var(--font-inter)] text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-[oklch(0.78_0.11_78)] md:text-xs">
+            Manos que dejan huella
+          </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
-              <div>
-                <p className="text-3xl font-bold text-primary">20+</p>
-                <p className="text-sm text-muted-foreground font-[var(--font-inter)]">Años de experiencia</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-primary">5000+</p>
-                <p className="text-sm text-muted-foreground font-[var(--font-inter)]">Clientes satisfechos</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-primary">100%</p>
-                <p className="text-sm text-muted-foreground font-[var(--font-inter)]">Cuero genuino</p>
-              </div>
-            </div>
+          <h1 className="font-[family-name:var(--font-playfair)] text-[2.1rem] font-semibold leading-[1.12] tracking-tight text-white text-balance sm:text-5xl md:text-[3.25rem] lg:text-[3.75rem] lg:leading-[1.08]">
+            Tradición que{" "}
+            <span className="font-[family-name:var(--font-dancing)] text-[1.12em] font-normal text-[oklch(0.82_0.12_78)] not-italic">
+              transforma
+            </span>{" "}
+            cada pieza.
+          </h1>
+
+          <p className="max-w-xl font-[var(--font-inter)] text-base leading-relaxed text-white/85 md:text-lg">
+            Reparación de calzado y marroquinería en nuestro taller. Trabajo real, herramientas de
+            oficio y acabados que perduran.
+          </p>
+
+          <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 rounded-none border-0 bg-[oklch(0.74_0.11_78)] px-8 font-[var(--font-inter)] text-sm font-semibold uppercase tracking-[0.12em] text-stone-950 shadow-lg shadow-black/25 transition hover:bg-[oklch(0.78_0.1_78)]"
+            >
+              <Link href="/tienda">
+                Ver tienda
+                <IconArrowRight className="ml-2 w-4 h-4" size={16} />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-12 rounded-none border-white/50 bg-transparent font-[var(--font-inter)] text-sm font-medium uppercase tracking-[0.1em] text-white backdrop-blur-[2px] hover:bg-white/10 hover:text-white"
+            >
+              <Link href="/nosotros">Conocer el taller</Link>
+            </Button>
           </div>
+        </div>
 
-          {/* Images Grid */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-5UXXzH9aYFkUOFQAsSEcZvl3TrH9IV.png"
-                    alt="Fachada de Shekiná"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
+        <div className="mt-14 grid max-w-4xl gap-8 border-t border-white/15 pt-10 md:mt-20 md:grid-cols-3 md:gap-10 md:pt-12">
+          {features.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="flex gap-4 md:block md:space-y-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[oklch(0.78_0.11_78)]/50 bg-black/20 text-[oklch(0.82_0.11_78)] md:h-12 md:w-12">
+                <Icon size={22} className="md:h-6 md:w-6" />
               </div>
-              <div className="space-y-4 pt-8">
-                <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-gyFYwTQ8QcuSHYV72RyWmWGzINA2VF.png"
-                    alt="Productos de cuero - billeteras y cinturones"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DBjEoZEZaFG8x0VOS073EQ3XxuYAVi.png"
-                    alt="Taller de costura y reparación"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+              <div>
+                <p className="font-[var(--font-inter)] text-xs font-semibold uppercase tracking-[0.2em] text-[oklch(0.82_0.11_78)]">
+                  {title}
+                </p>
+                <p className="mt-1.5 font-[var(--font-inter)] text-sm leading-relaxed text-white/75">
+                  {text}
+                </p>
               </div>
             </div>
-            
-            {/* Decorative element */}
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/10 rounded-full blur-3xl" />
-          </div>
+          ))}
+        </div>
+
+        <div className="mt-10 md:mt-14">
+          <p className="font-[var(--font-inter)] text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-[oklch(0.76_0.1_78)]">
+            Tecnología que impulsa el oficio
+          </p>
+          <p className="mt-2 font-[family-name:var(--font-playfair)] text-lg italic text-white/90 md:text-xl">
+            Pasión que se nota en cada costura.
+          </p>
         </div>
       </div>
     </section>

@@ -2,24 +2,26 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ChevronLeft, MessageCircle } from "lucide-react"
+import { IconChevronLeft, IconMessage } from "@/components/icons"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { Button } from "@/components/ui/button"
-import { products, getProductBySlug, PRODUCT_CATEGORIES } from "@/lib/products"
+import {
+  getProductBySlug,
+  PRODUCT_CATEGORIES,
+  GENDER_LABELS,
+} from "@/lib/products"
 import { getProductPurchaseUrl } from "@/lib/whatsapp"
 import { SITE_NAME } from "@/lib/site-config"
 
 type Props = { params: Promise<{ slug: string }> }
 
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }))
-}
+export const dynamic = "force-dynamic"
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const product = getProductBySlug(slug)
+  const product = await getProductBySlug(slug)
   if (!product) return { title: "Producto | " + SITE_NAME }
   return {
     title: `${product.name} | Tienda ${SITE_NAME}`,
@@ -36,9 +38,19 @@ function categoryLabel(slug: string) {
   return PRODUCT_CATEGORIES.find((c) => c.id === slug)?.name ?? slug
 }
 
+function collectionCrumb(product: { gender: string }) {
+  if (product.gender === "mujer") {
+    return { href: "/tienda/mujer" as const, label: "Mujer" }
+  }
+  if (product.gender === "hombre") {
+    return { href: "/tienda/hombre" as const, label: "Hombre" }
+  }
+  return null
+}
+
 export default async function ProductoPage({ params }: Props) {
   const { slug } = await params
-  const product = getProductBySlug(slug)
+  const product = await getProductBySlug(slug)
   if (!product) notFound()
 
   const gallery = product.images?.length
@@ -47,20 +59,40 @@ export default async function ProductoPage({ params }: Props) {
   const uniqueGallery = [...new Set(gallery)]
   const waUrl = getProductPurchaseUrl(product)
   const body = product.longDescription ?? product.description
+  const collection = collectionCrumb(product)
 
   return (
     <main className="min-h-screen">
       <Header />
       <article className="pt-24 pb-20 bg-secondary/30">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <nav className="mb-8 font-[var(--font-inter)] text-sm text-muted-foreground flex flex-wrap gap-x-4 gap-y-2">
+          <nav className="mb-8 font-[var(--font-inter)] text-sm text-muted-foreground flex flex-wrap gap-x-4 gap-y-2 items-center">
             <Link
-              href="/tienda"
+              href="/"
               className="inline-flex items-center gap-1 hover:text-primary transition-colors"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <IconChevronLeft className="w-4 h-4" size={16} />
+              Inicio
+            </Link>
+            <span className="text-border" aria-hidden>
+              /
+            </span>
+            <Link href="/tienda" className="hover:text-primary transition-colors">
               Tienda
             </Link>
+            {collection && (
+              <>
+                <span className="text-border" aria-hidden>
+                  /
+                </span>
+                <Link
+                  href={collection.href}
+                  className="hover:text-primary transition-colors"
+                >
+                  {collection.label}
+                </Link>
+              </>
+            )}
             <span className="text-border" aria-hidden>
               /
             </span>
@@ -101,8 +133,12 @@ export default async function ProductoPage({ params }: Props) {
 
             <div className="space-y-6">
               <div>
-                <p className="text-sm font-medium text-primary font-[var(--font-inter)] mb-2">
+                <p className="text-sm font-medium text-primary font-[var(--font-inter)] mb-1">
                   {categoryLabel(product.category)}
+                  <span className="text-muted-foreground font-normal">
+                    {" "}
+                    · {GENDER_LABELS[product.gender]}
+                  </span>
                 </p>
                 <h1 className="text-3xl md:text-4xl font-bold">{product.name}</h1>
                 <p className="text-3xl font-bold text-primary mt-4">{product.price}</p>
@@ -121,12 +157,16 @@ export default async function ProductoPage({ params }: Props) {
                   className="bg-[#25D366] hover:bg-[#20BA5C] text-white w-full sm:w-auto"
                 >
                   <a href={waUrl} target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="w-5 h-5 mr-2" />
+                    <IconMessage className="w-5 h-5 mr-2" size={20} />
                     Comprar por WhatsApp
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                  <Link href="/tienda">Seguir viendo la tienda</Link>
+                  <Link href={collection?.href ?? "/tienda"}>
+                    {collection
+                      ? `Volver a ${collection.label}`
+                      : "Seguir viendo la tienda"}
+                  </Link>
                 </Button>
               </div>
 

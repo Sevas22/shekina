@@ -1,6 +1,13 @@
 import Link from "next/link"
 import Image from "next/image"
-import { MapPin, Phone, Clock, Instagram, Facebook } from "lucide-react"
+import {
+  IconMapPin,
+  IconPhone,
+  IconClock,
+  IconInstagram,
+  IconFacebook,
+  IconShekinaMark,
+} from "@/components/icons"
 
 export function Footer() {
   return (
@@ -50,19 +57,19 @@ export function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contacto</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-sidebar-primary shrink-0 mt-0.5" />
+                <IconMapPin className="w-5 h-5 text-sidebar-primary shrink-0 mt-0.5" size={20} />
                 <span className="text-sm text-sidebar-foreground/70 font-[var(--font-inter)]">
                   Calle Principal #123, Ciudad
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-sidebar-primary shrink-0" />
+                <IconPhone className="w-5 h-5 text-sidebar-primary shrink-0" size={20} />
                 <span className="text-sm text-sidebar-foreground/70 font-[var(--font-inter)]">
                   +57 300 123 4567
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-5 h-5 text-sidebar-primary shrink-0 mt-0.5" />
+                <IconClock className="w-5 h-5 text-sidebar-primary shrink-0 mt-0.5" size={20} />
                 <span className="text-sm text-sidebar-foreground/70 font-[var(--font-inter)]">
                   Lun - Sáb: 8:00 AM - 6:00 PM
                 </span>
@@ -79,20 +86,25 @@ export function Footer() {
                 className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center hover:bg-sidebar-primary transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <IconInstagram className="w-5 h-5" size={20} />
               </a>
               <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center hover:bg-sidebar-primary transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5" />
+                <IconFacebook className="w-5 h-5" size={20} />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-sidebar-border">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-sidebar-border pt-8">
+          <IconShekinaMark
+            className="text-sidebar-primary/50"
+            size={40}
+            aria-hidden
+          />
           <p className="text-center text-sm text-sidebar-foreground/50 font-[var(--font-inter)]">
             &copy; {new Date().getFullYear()} Shekiná. Todos los derechos reservados.
           </p>
